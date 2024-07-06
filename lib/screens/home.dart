@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:proj4/components/main_drawer.dart';
+import 'package:proj4/screens/drink_menu.dart';
+import 'package:proj4/screens/food_menu.dart';
+import 'package:proj4/screens/highlights.dart';
 import 'package:proj4/themes/app_colors.dart';
 
 class Home extends StatefulWidget {
@@ -12,6 +15,11 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _currentPage = 0;
+  final List<Widget> pages = [
+    const Highlights(),
+    const FoodMenu(),
+    const DrinkMenu()
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +64,7 @@ class _HomeState extends State<Home> {
         currentIndex: _currentPage,
         onTap: (index) => setState(() => _currentPage = index),
       ),
+      body: pages.elementAt(_currentPage),
     );
   }
 }
